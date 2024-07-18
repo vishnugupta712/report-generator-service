@@ -1,0 +1,8 @@
+pluginManagement{
+    repositories{
+        mavenLocal()
+        mavenCentral()
+        gradlePluginPortal()
+    }
+}
+rootProject.name = 'natwest-report-generator-service'
