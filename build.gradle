@@ -1,5 +1,7 @@
 plugins {
     id 'java'
+    id 'org.springframework.boot' version '2.7.18'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
 }
 group = 'com.natwest'
 sourceCompatibility = '17'
@@ -7,10 +9,36 @@ repositories {
     mavenLocal()
     mavenCentral()
 }
+ext {
+    set('snakeyaml.version',"2.0")
+    set('jacksonBomVersion',"2.14.2")
+}
 dependencies {
-    implementation 'org.apache.commons:commons-text:1.10.0'
-    implementation 'org.apache.commons:commons-rng-core:1.4'
-    implementation 'org.apache.commons:commons-rng-simple:1.4'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    compileOnly 'org.projectlombok:lombok:1.18.24'
+    annotationProcessor 'org.projectlombok:lombok:1.18.24'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
     implementation 'org.apache.commons:commons-collections4:4.4'
+    implementation 'org.apache.commons:commons-csv:+'
+    implementation 'org.springframework.boot:spring-boot-starter-json'
+    implementation 'org.apache.poi:poi:5.2.3'
+    implementation 'org.apache.poi:poi-ooxml:5.2.3'
+    implementation 'org.springframework:spring-context:5.3.20'
+    implementation 'commons-io:commons-io:+'
+    implementation 'org.apache.commons:commons-lang3:+'
+    testImplementation "org.junit.jupiter:junit-jupiter:5.7.0"
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:5.7.0"
+    testImplementation "org.junit.jupiter:junit-jupiter-params:5.7.0"
+    testImplementation 'org.mockito:mockito-inline'
+    testImplementation 'org.mockito:mockito-core:5.0.0'
+}
+
+test{
+    useJUnitPlatform()
+}
+dependencyManagement {
+    imports {
+        mavenBom "com.fasterxml.jackson:jackson-bom:${jacksonBomVersion}"
+    }
 }
 

@@ -1,10 +1,11 @@
 package com.natwest.code.service;
 
+import com.natwest.code.model.InputFileRequestDto;
+import com.natwest.code.model.ReferenceInputFileRequestDto;
 import java.util.List;
-
-import com.sapient.code.model.IncomeInfo;
+import org.apache.commons.lang3.tuple.Pair;
 
 public interface FileContentReader {
 
-	public List<IncomeInfo> extractDataFromFile(String filePath) ;
+	public Pair<List<InputFileRequestDto>, List<ReferenceInputFileRequestDto>> extractDataFromFile(byte[] inputFileData, byte[] referenceFileData) ;
 }
